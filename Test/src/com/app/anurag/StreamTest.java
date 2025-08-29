@@ -9,7 +9,19 @@ public class StreamTest {
 
     public static void main(String[] args) {
 
+        List<Employee> employeeList = Arrays.asList(
+                new Employee(1, "John", "Gupta", 100.00, "Male"),
+                new Employee(2, "Jacob", "Gupta", 200.00, "Female"),
+                new Employee(3, "Ram", "Gupta", 300.00, "Male"),
+                new Employee(4, "Shyam", "Gupta", 100.00, "Female")
+        );
 
+        Map<Integer, Employee> employeeMap = employeeList.stream().collect(Collectors.toMap(Employee::getId, e ->e));
+
+        employeeMap.get(1).setEmpName("Anurag");
+
+        System.out.println(employeeList);
+        System.out.println("_______________");
         String str = "silent";
         String str2 = "listen";
         char [] charArray1 =str.trim().toCharArray();

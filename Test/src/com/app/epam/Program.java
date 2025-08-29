@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 
 public class Program {
     public static void main(String[] args) {
-        Map<String, List<String>> maps = new HashMap<String, List<String>>();
+        Map<String, List<String>> maps = new HashMap<>();
         maps.put("Animals", Arrays.asList("Tiger","Dog","Cat","Deer","Monkey","SPARROW","Tiger","Cat")); // ignore SPARROW
-        maps.put("Fruits", Arrays.asList("apple","mango","banana","chiku")); // all ignore
+        maps.put("Fruits", Arrays.asList("apple","mango","banana","grape")); // all ignore
         maps.put("Cities", Arrays.asList("Hyderabad","Pune","Mumbai","New York","Goa","Chennai","Pune")); // ignore New York and remove duplicate
 
         List<String> ani = maps.entrySet().stream().flatMap(map ->{
@@ -26,7 +26,7 @@ public class Program {
             }else {
                 return null;
             }
-        }).collect(Collectors.toList());
+        }).toList();
 
         System.out.println("ANI" + ani);
         System.out.println("++++++++");
@@ -38,7 +38,7 @@ public class Program {
                 .filter( a -> !a.equals("New York"))
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
-        animals.addAll(cities.entrySet().stream().filter(m -> m.getValue() ==1).map(m -> m.getKey()).collect(Collectors.toList()));
+        animals.addAll(cities.entrySet().stream().filter(m -> m.getValue() ==1).map(Map.Entry::getKey).toList());
         System.out.println(animals);
 
     }
